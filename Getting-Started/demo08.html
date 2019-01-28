@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>組件化應用構建</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app-8">
+        <ol>
+            <todo-item v-for="item in result" v-bind:data="item" v-bind:key="item.id">
+            </todo-item>
+        </ol>
+        <ul>
+            <li>{{ result[0].name }}</li>
+            <li>{{ result[1].name }}</li>
+            <li>{{ result[2].name }}</li>
+        </ul>
+    </div>
+</body>
+<script>
+    Vue.component('todo-item', {
+        props: ['data'],
+        template: '<li>{{ data.symbol }}</li>'
+    })
+
+    var app8 = new Vue({
+        el: '#app-8',
+        data: {
+            result: [
+                {
+                    id: "bitcoin",
+                    name: "Bitcoin",
+                    symbol: "比特幣"
+                },
+                {
+                    id: "ethereum",
+                    name: "Ethereum",
+                    symbol: "以太幣"
+                },
+                {
+                    id: "litecoin",
+                    name: "Litecoin",
+                    symbol: "萊特幣"
+                }
+            ]
+        }
+    })
+</script>
+
+</html>
