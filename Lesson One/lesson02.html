@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>數據與方法</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+</body>
+<script>
+    // 我們的數據對象
+    var data = { a: 1 }
+
+    // 該對象被加入到一個 Vue 實例中
+    var vm = new Vue({
+        data: data
+    })
+
+    // 獲得這個實例上的屬性
+    // 返回源數據中對應的字段
+    vm.a == data.a // => true
+    console.log(vm.a == data.a);
+
+    // 設置屬性也會影響到原始數據
+    vm.a = 2
+    console.log(data.a);
+    data.a // => 2
+
+    // ……反之亦然
+    data.a = 3
+    console.log(vm.a);
+    vm.a // => 3
+</script>
+
+</html>
