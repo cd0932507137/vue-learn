@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>計算屬性緩存 vs 方法</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="example">
+        <p>Reversed message: "{{ reversedMessage() }}"</p>
+        <h4>{{ demo() }}</h4>
+    </div>
+</body>
+<script>
+    var vm = new Vue({
+        el: '#example',
+        data: {
+            message: 'Hello'
+        },
+        // 在组件中
+        methods: {
+            reversedMessage: function () {
+                return this.message.split('').reverse().join('')
+            },
+            demo: function () {
+                return '騙吃騙吃!!'
+            }
+        }
+    })
+</script>
+
+</html>

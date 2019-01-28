@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>計算屬性 vs 偵聽屬性</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        #one {
+            color: red;
+        }
+
+        #two {
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 寫法一的tag -->
+    <div id="one">
+        <h1>{{ fullName }}</h1>
+        <!-- 這是寫法一中watch中的firstName 函式 -->
+        <p>{{ firstName }}</p> 
+        <!-- 這是寫法一中watch中的lastName 函式 -->
+        <b>{{ lastName }}</b> 
+    </div>
+
+    <hr>
+
+    <!-- 寫法二的tag -->
+    <div id="two">
+        <h2>{{ Name }}</h2>
+    </div>
+</body>
+<script>
+    // 寫法一
+    var vm = new Vue({
+        el: '#one',
+        data: {
+            firstName: 'Foo',
+            lastName: 'Bar',
+            fullName: 'Foo Bar'
+        },
+        watch: {
+            firstName: function (val) {
+                this.fullName = val + ' ' + this.lastName
+            },
+            lastName: function (val) {
+                this.fullName = this.firstName + ' ' + val
+            }
+        }
+    })
+
+    // 寫法二
+    var app = new Vue({
+        el: '#two',
+        data: {
+            firstName: 'Hi Hi',
+            lastName: 'Josh'
+        },
+        computed: {
+            Name: function () {
+                return this.firstName + ' ' + this.lastName
+            }
+        }
+    })
+</script>
+
+</html>
