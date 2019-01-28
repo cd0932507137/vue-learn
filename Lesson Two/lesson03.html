@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>插值-特性</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <!-- h2 tag會顯示id值為1 -->
+    <h2 id="app" v-bind:id="dynamicId">{{ text }}</h2>
+
+    <!-- 如果 isButtonDisabled 的值是 null、undefined 或 false，则 disabled 特性甚至不会被包含在渲染出来的 <button> 元素中。 -->
+    <button id="app" v-bind:disabled="isButtonDisabled">Button</button>
+</body>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            dynamicId: 1,
+            text: 'I want drink beer~~~',
+            isButtonDisabled: true
+        }
+    })
+    console.log(app.dynamicId);
+    console.log(app.text);
+    console.log(app.isButtonDisabled);
+</script>
+
+</html>

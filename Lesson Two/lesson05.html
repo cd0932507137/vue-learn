@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>縮寫</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+        <!-- 以下是v-bind縮寫 -->
+        <!-- 完整語法 -->
+        <a v-bind:href="url">...</a>
+        <!-- 縮寫 -->
+        <a :href="url">...</a>
+
+        <!-- 以下是v-on縮寫 -->
+        <!-- 完整語法 -->
+        <a v-on:click="doSomething">點我</a>
+        <!-- 縮寫 -->
+        <a @click="doSomething">點我</a>
+    </div>
+
+</body>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            url: 'https://tw.yahoo.com/'
+        },
+        methods: {
+            doSomething: function () {
+                alert('打我啊笨蛋');
+            }
+        }
+    });
+</script>
+
+</html>
