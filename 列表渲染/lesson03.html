@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>列表渲染-key</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .text-center {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app" class="text-center">
+        <div v-for="item in items" :key="item.id">
+            <!-- 圖片撈取不用雙括號，但需要使用v-bind(src與alt) -->
+            <img v-bind:src="item.image" v-bind:alt="item.title">
+            <h3>{{ item.title }}</h3>
+        </div>
+    </div>
+
+</body>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            items: [{
+                "id": 0,
+                "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTv1MkpS5CNmx1yO5wvWOhcRKGmXDuBszZNSr9iu2vm5LUFlSIzlQ",
+                "title": "apple",
+                "webAddress": "https://www.apple.com"
+            }, {
+                "id": 1,
+                "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTK309oNr5an1_2RHdkSxmwmP0Utk8kmHC9wcChDcuDok3eC9QBJw",
+                "title": "yahoo",
+                "webAddress": "https://tw.yahoo.com"
+            }, {
+                "id": 2,
+                "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdIYVKsFu-OiSaCfsmlZXL1mZCcMhKPu0bH2kLMHpfuwEfUyK8RQ",
+                "title": "google",
+                "webAddress": "https://www.google.com.tw"
+            }, {
+                "id": 3,
+                "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5A-MQIou5XIJdvVdI_o7eplHUMSPxE-AzA5Sq36etzsfJmPNO",
+                "title": "hackmd",
+                "webAddress": "https://hackmd.io"
+            }, {
+                "id": 4,
+                "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT_qPcnfqhIRTcvfT-ghpKpiP15X9jHl8nS9GBAuaUJFlhOJnP2qQ",
+                "title": "trip advisor",
+                "webAddress": "https://www.tripadvisor.com.tw"
+            }, {
+                "id": 5,
+                "image": "https://tw.openrice.com/images/or/a_home_header_logo_or_TC_desktop.png",
+                "title": "openRice",
+                "webAddress": "https://tw.openrice.com/zh/taipei"
+            }, {
+                "id": 6,
+                "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQyvsL_kq22A1e6GCsBUXwid58QVGIBR10k_L4ZLjpRktr_qlgGmA",
+                "title": "icloud",
+                "webAddress": "https://www.icloud.com"
+            }]
+        }
+    })
+    console.log(app.items);
+    console.log(app.items[5].webAddress);
+    // 參考文獻: https://forum.vuejs.org/t/v-binding-an-image-from-an-object-to-an-img-src-not-working-in-vue-pwa-template/12754
+</script>
+
+</html>

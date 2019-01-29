@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>列表渲染-一個對象的 v-for</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+
+    <ul id="v-for-object" class="demo">
+        <li v-for="value in object">
+            {{ value }}
+        </li>
+
+        <hr>
+
+        <div v-for="(value, key) in object">
+            {{ key }}: {{ value }}
+        </div>
+
+        <hr>
+
+        <div v-for="(value, key) in result">
+            {{ key }}: {{ value }}
+        </div>
+
+        <hr>
+
+        <div v-for="(value, key, index) in object">
+            {{ index }}. {{ key }}: {{ value }}
+        </div>
+
+        <hr>
+
+        <div v-for="(value, key) in demo">
+            {{ value.id }}: {{ value.name }}
+        </div>
+    </ul>
+
+</body>
+<script>
+    new Vue({
+        el: '#v-for-object',
+        data: {
+            object: {
+                firstName: 'John',
+                lastName: 'Doe',
+                age: 30
+            },
+            result: {
+                id: 1,
+                tel: '04-23657896',
+                name: 'Jack'
+            },
+            demo: [{
+                id: 99,
+                name: 'Apple'
+            }, {
+                id: 100,
+                name: 'LG'
+            }, {
+                id: 101,
+                name: 'HTC'
+            }]
+        }
+    })
+</script>
+
+</html>
