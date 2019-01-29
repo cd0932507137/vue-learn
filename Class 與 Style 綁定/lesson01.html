@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>綁定 HTML Class-對象語法</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .static {
+            color: green;
+        }
+
+        .static:hover {
+            color: pink;
+        }
+
+        .text-danger {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <h1 v-bind:class="{ active: isActive }">app</h1>
+    </div>
+
+    <!-- 渲染結果為 <div class="static active"></div> -->
+    <div id="demo">
+        <p class="static" v-bind:class="{ active: isActive, 'text-danger': hasError }">
+            demo
+        </p>
+    </div>
+
+</body>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            isActive: true
+        }
+    });
+
+    var demo = new Vue({
+        el: '#demo',
+        data: {
+            isActive: true,
+            hasError: false
+        }
+    })
+</script>
+
+</html>

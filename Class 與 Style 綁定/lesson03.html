@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>綁定 HTML Class-用在组件上</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .foo {
+            color: red;
+        }
+        .bar {
+            text-align: center;
+        }
+        .size {
+            font-size: 2rem;
+        }
+        .family {
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <my-component class="size family"></my-component>
+    </div>
+
+</body>
+<script>
+    Vue.component('my-component', {
+        template: '<p class="foo bar">Hello James!~</p>'
+    })
+    var app = new Vue({
+        el: '#app'
+    });
+</script>
+
+</html>

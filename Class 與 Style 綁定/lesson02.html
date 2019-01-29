@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>綁定 HTML Class-數組語法</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .text-danger {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 渲染結果為 <div class="active text-danger">test</div> -->
+    <div id="app">
+        <div v-bind:class="[activeClass, errorClass]">test</div>
+    </div>
+
+</body>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            activeClass: 'active',
+            errorClass: 'text-danger'
+        }
+    });
+</script>
+
+</html>

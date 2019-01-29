@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>綁定內聯樣式-數組語法</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .a {
+            margin-top: 40px;
+            margin-left: 40px;
+            width: 150px;
+            height: 80px;
+            background-color: yellow;
+            transform: rotate(20deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" class="a">
+        <div v-bind:style="[baseStyles, overridingStyles]">我是美女</div>
+    </div>
+
+</body>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            baseStyles: {
+                color: 'red'
+            },
+            overridingStyles: {
+                fontSize: '18px'
+            }
+        }
+    })
+</script>
+
+</html>
