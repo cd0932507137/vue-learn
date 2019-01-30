@@ -60,10 +60,11 @@
                     title: this.newTodoText
                 })
                 this.newTodoText = '',
-                console.log(app.todos);
+                    console.log(app.todos);
             }
         }
     })
+    //注意這裡的 is="todo-item" 屬性。這種做法在使用 DOM 模板時是十分必要的，因為在 <ul> 元素內只有 <li> 元素會被看作有效內容。這樣做實現的效果與 <todo-item> 相同，但是可以避開一些潛在的瀏覽器解析錯誤。
 </script>
 
 </html>
