@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>組件基礎-通過 Prop 向子組件傳遞數據</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <blog-post id="1" title="My journey with Vue"></blog-post>
+        <blog-post id="2" title="Blogging with Vue"></blog-post>
+        <blog-post id="3" title="Why Vue is so fun"></blog-post>
+    </div>
+
+    <hr>
+
+    <div id="demo">
+        <blog-demo v-for="post in posts" v-bind:key="post.id" v-bind:title="post.title"></blog-demo>
+    </div>
+
+    <div id="blog-post-demo">
+        <blog-post v-for="post in posts" v-bind:key="post.id" v-bind:id="post.id" v-bind:title="post.title"></blog-post>
+    </div>
+
+</body>
+<script>
+    Vue.component('blog-post', {
+        props: ['id', 'title'],
+        template: '<h4>{{ id }}.{{ title }}</h4>'
+    })
+
+    Vue.component('blog-demo', {
+        template: '<h2>posts</h2>'
+    })
+
+    var app = new Vue({
+        el: '#app'
+    })
+
+    new Vue({
+        el: '#blog-post-demo',
+        data: {
+            posts: [
+                { id: 1, title: 'PHP' },
+                { id: 2, title: 'Asp.net' },
+                { id: 3, title: 'NodeJs' }
+            ]
+        }
+    })
+</script>
+
+</html>

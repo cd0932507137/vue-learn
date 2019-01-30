@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>組件基礎-通過事件向父級組件發送消息</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="blog-posts-events-demo">
+        <div :style="{ fontSize: postFontSize + 'em' }">
+            <blog-post v-for="post in posts" v-bind:key="post.id" v-bind:post="post" v-on:enlarge-text="postFontSize += 0.1"></blog-post>
+        </div>
+    </div>
+</body>
+<script>
+    // blog-post元件
+    Vue.component('blog-post', {
+        props: ['post'],
+        template: `
+            <div>
+                <h3>{{ post.id }}.{{ post.name }}</h3>
+                <button v-on:click="$emit('enlarge-text')">
+                    點我放大
+                </button>
+            </div>
+        `
+    })
+    var app = new Vue({
+        el: '#blog-posts-events-demo',
+        data: {
+            posts: [
+                { id: 1, name: 'Apple' },
+                { id: 2, name: 'LG' },
+                { id: 3, name: 'Samsung' }
+            ],
+            postFontSize: 1
+        }
+    })
+    console.log(app.postFontSize);
+</script>
+
+</html>

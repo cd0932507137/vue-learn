@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>組件基礎-單個根元素</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .text-center {
+            text-align: center;
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <span>Message: {{ msg }}</span>
+        <div v-html="content"></div>
+        <p v-html="text"></p>
+    </div>
+
+    <hr>
+
+    <!-- 重構一下這個 <demo> 組件了，讓它變成接受一個單獨的 post prop -->
+    <div id="phone">
+        <demo v-for="post in posts" v-bind:key="post.id" v-bind:post="post"></demo>
+    </div>
+
+</body>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            msg: 'No Sleep!!',
+            content: 'Tommy',
+            text: 123
+        }
+    })
+
+    // 現在，不論何時為 post 對象添加一個新的屬性，它都會自動地在 <demo> 內可用。
+    Vue.component('demo', {
+        props: ['post'],
+        template: `
+        <div class="text-center">
+            <h3>{{ post.name }}</h3>
+        </div>
+        `
+    })
+    var phone = new Vue({
+        el: '#phone',
+        data: {
+            posts: [
+                { id: 1, name: 'Apple' },
+                { id: 2, name: 'LG' },
+                { id: 3, name: 'Samsung' }
+            ]
+        }
+    })
+</script>
+
+</html>

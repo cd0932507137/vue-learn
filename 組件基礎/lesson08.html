@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>組件基礎-通過事件向父級組件發送消息-在組件上使用 v-model</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    
+    <div id="app">
+        請輸入:<custom-input v-model="searchText"></custom-input>
+        <br>
+        下方會顯示你輸入的東西:<p>{{ searchText }}</p>
+    </div>
+   
+</body>
+<script>
+    Vue.component('custom-input', {
+        props: ['value'],
+        template: `
+            <input 
+                v-bind:value="value"
+                v-on:input="$emit('input', $event.target.value)"
+            >
+        `
+    })
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            searchText: ''
+        }
+    })
+</script>
+
+</html>

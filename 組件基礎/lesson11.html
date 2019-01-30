@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>解析 DOM 模板時的注意事項</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        code {
+            color: #e96900;
+            padding: 3px 5px;
+            margin: 0 2px;
+            border-radius: 2px;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+
+<body>
+    <p>有些 HTML 元素，諸如 <code>&lt;ul&gt;</code>、<code>&lt;ol&gt;</code>、<code>&lt;table&gt;</code> 和 <code>&lt;select&gt;</code>，對於哪些元素可以出現在其內部是有嚴格限制的。而有些元素，諸如
+        <code>&lt;li&gt;</code>、<code>&lt;tr&gt;</code> 和 <code>&lt;option&gt;</code>，只能出現在其它某些特定的元素內部。</p>
+
+    <p>需要注意的是<strong>如果我們從以下來源使用模板的話，這條限制是<em>不存在</em>的</strong>：</p>
+    <ul>
+        <li>字符串 (例如：<code>template: '...'</code>)</li>
+        <li>单文件组件 (<code>.vue</code>)</li>
+        <li><code>&lt;script type="text/x-template"&gt;</code></li>
+    </ul>
+</body>
+<script>
+
+</script>
+
+</html>
