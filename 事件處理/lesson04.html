@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>事件處理-事件修飾符</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+
+    <!-- 阻止單擊事件繼續傳播 -->
+    <div id="stop">
+        <a v-on:click.stop="stop">'v-on:click.stop="doThis"'</a>
+    </div>
+    
+    <!-- 提交事件不再重載頁面 -->
+    <form id="reload" v-on:submit.prevent="onSubmit">reload</form>
+
+    <!-- 修飾符可以串聯 -->
+    <a v-on:click.stop.prevent="doThat">'v-on:click.stop.prevent="doThat"'</a>
+
+    <!-- 只有修飾符 -->
+    <form v-on:submit.prevent>'v-on:submit.prevent'</form>
+
+    <!-- 添加事件監聽器時使用事件捕獲模式 -->
+    <!-- 即元素自身觸發的事件先在此處理，然後才交由內部元素進行處理 -->
+    <div v-on:click.capture="doThis">'v-on:click.capture="doThis"'</div>
+
+    <!-- 只當在 event.target 是當前元素自身時觸發處理函數 -->
+    <!-- 即事件不是從內部元素觸發的 -->
+    <div id="self" v-on:click.self="self">{{ text }}</div>
+
+    <!-- 點擊事件將只會觸發一次 -->
+    <div id="once">
+        <a v-on:click.once="once">點擊我後只執行一次</a>
+    </div>
+    
+
+    <!-- 滾動事件的默認行為 (即滾動行為) 將會立即觸發 -->
+    <!-- 而不會等待 `onScroll` 完成  -->
+    <!-- 這其中包含 `event.preventDefault()` 的情況 -->
+    <div v-on:scroll.passive="onScroll">onScroll事件</div>
+
+    <!--
+        使用修飾符時，順序很重要；相應的代碼會以同樣的順序產生。因此，用 v-on:click.prevent.self 會阻止所有的點擊，而 v-on:click.self.prevent 只會阻止對元素自身的點擊。
+    -->
+
+</body>
+<script>
+    var reload = new Vue({
+        el: '#reload',
+        methods: {
+            onSubmit: function () {
+                location.reload();
+                console.log('onSubmit reload');
+            }
+        }
+    }) 
+
+    var self = new Vue({
+        el: '#self',
+        data: {
+            text: 'Taylor Swift'
+        },
+        methods: {
+            self: function () {
+                console.log('我會印出' + self.text);
+            }
+        }
+    })
+
+    var once = new Vue({
+        el: '#once',
+        methods: {
+            once: function (){
+                alert('you click me~~');
+            }
+        }
+    })
+</script>
+
+</html>

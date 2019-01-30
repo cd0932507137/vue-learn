@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>事件處理-按鍵修飾符</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+        <!-- 只有在 `keyCode` 是 13 時調用 `vm.submit()` -->
+        <!-- 寫法一 -->
+        <input v-on:keyup.13="submit">
+        <!-- 寫法二 -->
+        <input v-on:keyup.enter="submit">
+        <!-- 寫法三 -->
+        <input @keyup.enter="submit">
+    </div>
+
+</body>
+<script>
+    var app = new Vue({
+        el: '#app',
+        methods: {
+            submit: function () {
+                console.log('keyCode13 = Enter鍵');
+            }
+        }
+    });
+</script>
+
+</html>

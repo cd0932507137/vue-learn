@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>事件處理-內聯處理器中的方法</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="example-3">
+        <button v-on:click="say('hi')">Say hi</button>
+        <button v-on:click="say('what')">Say what</button>
+        <button v-on:click="say(123)">123</button>
+        <button v-on:click="say(false)">false</button>
+    </div>
+
+    <div id="apple">
+        <button v-on:click="warn('Form cannot be submitted yet.', $event)">
+            Submit
+        </button>
+    </div>
+
+</body>
+<script>
+    var example3 = new Vue({
+        el: '#example-3',
+        methods: {
+            say: function (message) {
+                alert(message);
+                console.log(message);
+            }
+        }
+    })
+
+    var apple = new Vue({
+        el: '#apple',
+        methods: {
+            warn: function (msg, event) {
+                // 現在我們可以訪問原生事件對象
+                if (event) event.preventDefault()
+                alert(msg);
+                console.log(msg); // Form cannot be submitted yet.
+                console.log(event); // MouseEvent 的物件
+                console.log(event.target.tagName); // BUTTON
+            }
+        }
+    })
+</script>
+
+</html>
