@@ -56,13 +56,19 @@
                 return Math.floor(Math.random() * this.items.length)
             },
             add: function () {
-                this.items.splice(this.randomIndex(), 0, this.nextNum++)
+                this.items.splice(this.randomIndex(), 0, this.nextNum++);
+                // 新增數字，(減1原因是因為這樣才會印出跟新增一樣的數字)
+                console.log(this.nextNum++ -1);
             },
             remove: function () {
-                this.items.splice(this.randomIndex(), 1)
+                this.items.splice(this.randomIndex(), 1);
+                // 會印出移除的數字(是一個陣列型態且只有一個數字)
+                console.log(this.items.splice(this.randomIndex(), 1));
             },
             shuffle: function () {
-                this.items = _.shuffle(this.items)
+                this.items = _.shuffle(this.items);
+                // 會印出所變換的狀態(是一個陣列型態)
+                console.log(this.items);
             }
         }
     })
