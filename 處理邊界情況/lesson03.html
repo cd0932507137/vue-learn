@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>訪問子組件實例或子元素</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+        <currency-input v-model="price"></currency-input>
+        <br>
+        <h2>${{ price }}元</h2>
+    </div>
+
+</body>
+<script>
+    Vue.component('currency-input', {
+        props: ['value'],
+        template: `
+            <span>
+            請輸入價錢:
+            $
+            <input
+                ref="input"
+                v-bind:value="value"
+                v-on:input="$emit('input', $event.target.value)">
+            </span>
+        `
+    })
+    var app = new Vue({
+        el: '#app',
+        data: {
+            price: null
+        }
+    });
+    console.log(app.price);
+</script>
+
+</html>

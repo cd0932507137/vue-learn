@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>通過 v-once 創建低開銷的靜態組件</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+        <terms-of-service></terms-of-service>
+    </div>
+
+</body>
+<script>
+    Vue.component('terms-of-service', {
+        template: `
+            <div v-once>
+            <h1>Terms of Service</h1>
+            ... a lot of static content ...
+            </div>
+        `
+    })
+    new Vue({
+        el: '#app'
+    })
+    // 再說一次，試著不要過度使用這個模式。
+    // 當你需要渲染大量靜態內容時，極少數的情況下它會給你帶來便利，除非你非常留意渲染變慢了，不然它完全是沒有必要的——再加上它在後期會帶來很多困惑。
+    // 例如，設想另一個開發者並不熟悉 v-once 或漏看了它在模板中，他們可能會花很多個小時去找出模板為什麼無法正確更新。
+</script>
+
+</html>

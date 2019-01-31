@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>處理邊界情況-訪問根實例</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+
+    </div>
+
+</body>
+<script>
+    // Vue 根實例
+    var app = new Vue({
+        el: '#app',
+        data: {
+            foo: 1
+        },
+        computed: {
+            bar: function () {
+                return 'bar123';
+            }
+        },
+        methods: {
+            baz: function () {
+                return {
+                    id: 99,
+                    text: 'power99'
+                };
+            }
+        }
+    })
+    // 獲取根組件的數據
+    console.log(app.foo);
+    app.foo = 2;
+    // 寫入根組件的數據
+    console.log(app.foo);
+    // 訪問根組件的計算屬性
+    console.log(app.bar);
+    // 調用根組件的方法
+    console.log(app.baz());
+</script>
+
+</html>
