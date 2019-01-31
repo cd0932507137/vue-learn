@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>自定義事件-將原生事件綁定到組件</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+            <base-input v-on:focus.native="onFocus"></base-input>
+    </div>
+
+</body>
+<script>
+    // 注意你仍然需要在組件的 props 選項裡聲明 checked 這個 prop。
+    Vue.component('base-input', {
+        model: {
+            prop: 'checked',
+            event: 'change'
+        },
+        props: {
+            checked: Boolean
+        },
+        template: `
+            <input
+            type="text"
+            v-on:change="$emit('change', $event.target.checked)"
+            >
+        `
+    })
+    var app = new Vue({
+        el: '#app',
+        methods: {
+            onFocus: function () {
+                // 點擊input tag就會出現此log
+                console.log('你點擊我了'); 
+            }
+        }
+    });
+</script>
+
+</html>
