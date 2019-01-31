@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Prop 的大小寫 (camelCase vs kebab-case)</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+        <blog-demo demo-text="Hi Hi" post-title="大家好~~"></blog-demo>
+    </div>
+
+</body>
+<script>
+    Vue.component('blog-demo', {
+        // 在 JavaScript 中是 camelCase 的
+        props: ['postTitle', 'demoText'],
+        template: `<h2>{{ demoText }} {{ postTitle }}</h2>`
+    })
+    var app = new Vue({
+        el: '#app'
+    });
+</script>
+
+</html>

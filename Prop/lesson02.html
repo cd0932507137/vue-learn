@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>傳遞靜態或動態 Prop</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+        <blog-demo title="My journey with Vue"></blog-demo>
+
+        <!-- 動態賦予一個變量的值 -->
+        <blog-demo v-bind:title="post.title"></blog-demo>
+
+        <!-- 動態賦予一個複雜表達式的值 -->
+        <blog-demo v-bind:title="post.title + ' by ' + post.author.name"></blog-demo>
+
+        <blog-demo v-bind:likes="42"></blog-demo>
+
+    </div>
+
+</body>
+<script>
+    Vue.component('blog-demo', {
+        props: ['title', 'likes'],
+        template: `<p>{{ title }} {{ likes }}</p>`
+    })
+    var app = new Vue({
+        el: '#app',
+        data: {
+            likes: '',
+            post: {
+                title: 'Admin',
+                author: {
+                    name: 'Docker'
+                }
+            }
+        }
+    });
+</script>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>傳入一個對象</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+
+        <!-- 即便對像是靜態的，我們仍然需要 `v-bind` 來告訴 Vue -->
+        <!-- 這是一個 JavaScript 表達式而不是一個字符串。-->
+        <blog-post v-bind:author="{ name: 'Veronica', company: 'Veridian Dynamics' }"></blog-post>
+
+        <!-- 用一個變量進行動態賦值。-->
+        <blog-post v-bind:author="post.author"></blog-post>
+
+    </div>
+
+</body>
+<script>
+    Vue.component('blog-post', {
+        props: ['author'],
+        template: `<h1>{{ author }}</h1>`
+    })
+    var app = new Vue({
+        el: '#app',
+        data: {
+            post: {
+                author: {
+                    a: 1,
+                    b: 'VueJs',
+                    c: undefined,
+                    d: false
+                }
+            }
+        }
+    });
+    console.log(app.post.author);
+    console.log(app.post.author.c + '<---這個值是undefined');
+</script>
+
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>傳入一個布爾值</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .red {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+
+        <!-- 包含該 prop 沒有值的情況在內，都意味著 `true`。-->
+        <blog-post is-published></blog-post>
+
+        <!-- 即便 `false` 是靜態的，我們仍然需要 `v-bind` 來告訴 Vue -->
+        <!-- 這是一個 JavaScript 表達式而不是一個字符串。-->
+        <blog-post class="red" v-bind:is-published="false"></blog-post>
+
+        <!-- 用一個變量進行動態賦值。-->
+        <blog-post v-bind:is-published="post.isPublished"></blog-post>
+
+    </div>
+
+</body>
+<script>
+    Vue.component('blog-post', {
+        props: ['is-published', 'isPublished'],
+        template: `<h1>{{ isPublished }}</h1>`
+    })
+    var app = new Vue({
+        el: '#app',
+        data: {
+            post: {
+                isPublished: true
+            }
+        }
+    });
+    console.log(app.post.isPublished);
+</script>
+
+</html>

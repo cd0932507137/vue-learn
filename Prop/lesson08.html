@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>非 Prop 的特性-替換/合併已有的特性</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .py-2 {
+            padding-top: 1.5rem;
+            padding-bottom: 1.5rem;
+        }
+
+        .bg-dark {
+            background-color: #343a40;
+        }
+
+        .form-control {
+            display: block;
+            width: 100%;
+            height: calc(2.25rem + 2px);
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #495057;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: .25rem;
+            transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <bootstrap-date-input data-date-picker="activated" class="bg-dark"></bootstrap-date-input>
+    </div>
+
+</body>
+<script>
+    Vue.component('bootstrap-date-input', {
+        props: ['label', 'value'],
+        template: `
+            <div class="py-2">
+                <input type="date" class="form-control">
+            </div>
+        `
+    });
+    var app = new Vue({
+        el: '#app'
+    });
+    // 在這種情況下，我們定義了兩個不同的 class 的值：
+    // form-control，這是在組件的模板內設置好的
+    // date-picker-theme-dark，這是從組件的父級傳入的
+</script>
+
+</html>

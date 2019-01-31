@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>傳入一個數字</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <style>
+        .color {
+            color: yellow;
+        }
+        .text {
+            color: blue
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+
+        <!-- 即便 `42` 是靜態的，我們仍然需要 `v-bind` 來告訴 Vue -->
+        <!-- 這是一個 JavaScript 表達式而不是一個字符串。-->
+        <blog-demo v-bind:number="42"></blog-demo>
+
+        <!-- 用一個變量進行動態賦值。-->
+        <blog-demo v-bind:likes="post.likes"></blog-demo>
+
+        <blog-demo class="text" v-bind:text="text"></blog-demo>
+
+    </div>
+
+</body>
+<script>
+    Vue.component('blog-demo', {
+        props: ['number', 'likes', 'text'],
+        template: `<h1 class="color">{{ number }} {{ likes }} {{ text }}</h1>`
+    })
+    var app = new Vue({
+        el: '#app',
+        data: {
+            number: '',
+            text: 'JavaScript題目篇-新手JS地下城',
+            post: {
+                likes: 99
+            }
+        }
+    });
+</script>
+
+</html>
