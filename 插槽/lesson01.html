@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>插槽內容</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <navigation-link url="/profile">
+            Your Profile
+        </navigation-link>
+
+        <br>
+
+        <navigation-link url="https://tw.yahoo.com/">
+            <!-- 添加一個 Font Awesome 圖標 -->
+            <h1>
+                <span class="fa fa-user"></span>
+                點我會連結到yahoo
+            </h1>
+        </navigation-link>
+    </div>
+</body>
+<script>
+    Vue.component('navigation-link', {
+        props: ['url'],
+        template: `
+        <a v-bind:href="url" class="nav-link">
+            <slot></slot>
+        </a>
+        `
+    })
+    var app = new Vue({
+        el: '#app'
+    })
+</script>
+
+</html>
