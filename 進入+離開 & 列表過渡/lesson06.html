@@ -25,6 +25,10 @@
 
 <body>
 
+    <!-- 
+        in-out：新元素先進行過渡，完成之後當前元素過渡離開。
+        out-in：當前元素先進行過渡，完成之後新元素過渡進入。 
+    -->
     <div id="transition-components-demo">
         <transition name="component-fade" mode="out-in">
             <component v-bind:is="view"></component>
