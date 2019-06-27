@@ -1,1 +1,33 @@
-這是VueJs框架學習
+## Vue 生命週期
+
+- beforeCreate 
+  - $el, $data, DOM 都未載入 
+  - 用途: 展示 Loading 畫面 
+  - 勿在此 Call API ，無論 API 回應速度，該回應還是會在 created 才被處理，因還未有 $data 可以儲存該資料 
+  - server-side rendering 時會被呼叫 
+- created 
+  - $el, DOM 都未載入，$data 已可使用 
+  - 用途: 初始化資料、AJAX Call 
+  - server-side rendering 時會被呼叫
+- beforeMount 
+  - $data 已載入 (此生命週期較少用到) 
+  - server-side rendering 時 不會 被呼叫
+- mounted 
+  - $el, $data, DOM 皆載入 
+  - 用途: 渲染畫面、掛載監聽器 
+  - server-side rendering 時 不會 被呼叫
+- beforeUpdate 
+  - 當 相依資料更新、或需重新渲染 時觸發，在 DOM 重新渲染之前 
+  - 此時為 修改資料的最後時機 
+  - 用於 debugging 監控何時元件被重新渲染
+- updated 
+  - 當 相依資料更新、或需重新渲染 時觸發，重新渲染 DOM 之後 
+  - 在此取得已更新的 DOM
+- beforeDestroy
+  - watchers / 子元件 / 事件監聽 被摧毀之前 
+  - 此時 元件還是可以正常運行 
+  - 用途: 在此清除 事件監聽、訂閱資料 
+- destroyed 
+  - 不代表網頁上渲染的元素會消失，只是該元素會與 Vue 實體脫鉤，不再接收控制 
+  - 解除 watchers / 事件監聽 / 清除子元件 之後 
+  - 可用來告知 伺服器，此元件已被清除
